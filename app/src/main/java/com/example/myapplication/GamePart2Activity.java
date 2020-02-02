@@ -16,7 +16,6 @@ import static com.example.myapplication.EasyGmActivity.A;
 import static com.example.myapplication.EasyGmActivity.S;
 
 public class GamePart2Activity extends AppCompatActivity {
-    private TextView testView;
     private TextView resultText;
     private ImageButton picc1;
     private ImageButton picc2;
@@ -29,10 +28,9 @@ public class GamePart2Activity extends AppCompatActivity {
     private ImageButton picc9;
     private Button backMenu;
     private final Random rnd = new Random();
-    private int[] mixAnimals = new int[A - 1];
+    private int[] mixAnimals = new int[9];
     private int[] rightAnimals = new int[S];
     private int rndSize = S;
-    private String answerLine = "";
     private int countRight = 0;
     private int countAnswers = 0;
 
@@ -40,7 +38,6 @@ public class GamePart2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_part2);
-        testView = findViewById(R.id.testView);
         resultText = findViewById(R.id.resultText);
         picc1 = findViewById(R.id.picc1);
         picc2 = findViewById(R.id.picc2);
@@ -74,10 +71,10 @@ public class GamePart2Activity extends AppCompatActivity {
             mixAnimals[i] = EasyGmActivity.getElementByIndex(i);
             rightAnimals[i] = EasyGmActivity.getElementByIndex(i);
         }
-        for (int i = S; i < A - 1; i++) {
+        for (int i = S; i < 9; i++) {
             while (true) {
                 int flag = 0;
-                int imgIndex = rnd.nextInt(A);
+                int imgIndex = rnd.nextInt(10);
                 for (int j = 0; j < i; j++) {
                     if (mixAnimals[j] == imgIndex) {
                         flag = 1; // повтор найден
@@ -93,8 +90,8 @@ public class GamePart2Activity extends AppCompatActivity {
         }
         //перемешать массив
         for (int i = 0; i < 36; i++) {
-            int i1 = rnd.nextInt(A - 1);
-            int i2 = rnd.nextInt(A - 1);
+            int i1 = rnd.nextInt(9);
+            int i2 = rnd.nextInt(9);
             int z;
             z = mixAnimals[i1];
             mixAnimals[i1] = mixAnimals[i2];
@@ -176,8 +173,26 @@ public class GamePart2Activity extends AppCompatActivity {
                     resultText.setText("Take an L");
                     blockAllImages();
                     backMenu.setVisibility(View.VISIBLE);
+                    if (index == 0)
+                        picc1.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 1)
+                        picc2.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 2)
+                        picc3.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 3)
+                        picc4.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 4)
+                        picc5.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 5)
+                        picc6.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 6)
+                        picc7.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 7)
+                        picc8.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    else if (index == 8)
+                        picc9.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
+                    return;
                 }
-                answerLine = answerLine.concat("+");
                 flag = 1;
                 countRight++;
                 if (countRight == 6) {
@@ -210,12 +225,36 @@ public class GamePart2Activity extends AppCompatActivity {
 
         if (flag == 0) {
             if (MainActivity.mode.equals("Hard")) {
-                answerLine = answerLine.concat("+");
+
+                if (index == 0)
+                    picc1.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 1)
+                    picc2.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 2)
+                    picc3.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 3)
+                    picc4.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 4)
+                    picc5.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 5)
+                    picc6.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 6)
+                    picc7.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 7)
+                    picc8.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
+                else if (index == 8)
+                    picc9.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
                 countRight++;
+                if (countRight == 3){
+                    resultText.setText("WIN");
+                    backMenu.setVisibility(View.VISIBLE);
+                    blockAllImages();
+
+                }
+                return;
 
             }
             resultText.setText("Take an L");
-            answerLine = answerLine.concat("-");
             blockAllImages();
             backMenu.setVisibility(View.VISIBLE);
             if (index == 0)
@@ -238,7 +277,6 @@ public class GamePart2Activity extends AppCompatActivity {
                 picc9.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "w", "drawable", getApplicationContext())));
 
         }
-        testView.setText(answerLine);
 
 
     }
