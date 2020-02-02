@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GamePart2Activity">
+
+    <ImageButton
+        android:id="@+id/picc1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc1Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc4"
+        app:layout_constraintEnd_toStartOf="@+id/picc2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc2Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc5"
+        app:layout_constraintEnd_toStartOf="@+id/picc3"
+        app:layout_constraintStart_toEndOf="@+id/picc1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc3Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/picc2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc4"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc4Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc7"
+        app:layout_constraintEnd_toStartOf="@+id/picc5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picc1"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc5"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc5Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc8"
+        app:layout_constraintEnd_toStartOf="@+id/picc6"
+        app:layout_constraintStart_toEndOf="@+id/picc4"
+        app:layout_constraintTop_toBottomOf="@+id/picc2"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc6"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc6Handler"
+        app:layout_constraintBottom_toTopOf="@+id/picc9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/picc5"
+        app:layout_constraintTop_toBottomOf="@+id/picc3"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc7"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc7Handler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picc8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picc4"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc8"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc8Handler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picc9"
+        app:layout_constraintStart_toEndOf="@+id/picc7"
+        app:layout_constraintTop_toBottomOf="@+id/picc5"
+        app:srcCompat="@drawable/imageempty" />
+
+    <ImageButton
+        android:id="@+id/picc9"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:onClick="picc9Handler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/picc8"
+        app:layout_constraintTop_toBottomOf="@+id/picc6"
+        app:srcCompat="@drawable/imageempty" />
+
+    <TextView
+        android:id="@+id/testView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="340dp"
+        android:layout_marginBottom="50dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/picc1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="50dp"
+        android:text="Win or Lose"
+        app:layout_constraintBottom_toTopOf="@+id/picc2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/testView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="backMenu"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picc8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
