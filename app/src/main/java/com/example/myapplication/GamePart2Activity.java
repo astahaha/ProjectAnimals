@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -157,6 +158,22 @@ public class GamePart2Activity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    private void scoreWinUp() {
+        SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
+        int winScore = myScore.getInt("winScore", 0);
+        winScore++;
+        SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
+        editor.putInt("winScore", winScore);
+        editor.commit();
+    }
+    private void scoreLoseUp() {
+        SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
+        int loseScore = myScore.getInt("loseScore", 0);
+        loseScore++;
+        SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
+        editor.putInt("loseScore", loseScore);
+        editor.commit();
+    }
 
 
     private void checkChoise(int index) {
@@ -165,12 +182,14 @@ public class GamePart2Activity extends AppCompatActivity {
             backMenu.setVisibility(View.VISIBLE);
             blockAllImages();
             resultText.setText("Take an L");
+
         }
         int flag = 0;
         for (int i = 0; i < S; i++) {
             if (rightAnimals[i] == mixAnimals[index]) {
                 if (MainActivity.mode.equals("Hard")) {
                     resultText.setText("Take an L");
+                    scoreLoseUp();
                     blockAllImages();
                     backMenu.setVisibility(View.VISIBLE);
                     if (index == 0)
@@ -197,6 +216,8 @@ public class GamePart2Activity extends AppCompatActivity {
                 countRight++;
                 if (countRight == 6) {
                     resultText.setText("WIN");
+                    //обновление счета
+                   scoreWinUp();
                 }
                 if (index == 0)
                     picc1.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
@@ -249,12 +270,14 @@ public class GamePart2Activity extends AppCompatActivity {
                     resultText.setText("WIN");
                     backMenu.setVisibility(View.VISIBLE);
                     blockAllImages();
+                 scoreWinUp();
 
                 }
                 return;
 
             }
             resultText.setText("Take an L");
+            scoreLoseUp();
             blockAllImages();
             backMenu.setVisibility(View.VISIBLE);
             if (index == 0)

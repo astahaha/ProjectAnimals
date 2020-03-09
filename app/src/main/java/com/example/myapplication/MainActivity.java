@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
         mode = "Hard";
 
     }
+    public void goScoresTable(View v) {
+        Intent intent = new Intent(this, ScoresTableActivity.class);
+        startActivity(intent);
+
+    }
 }
