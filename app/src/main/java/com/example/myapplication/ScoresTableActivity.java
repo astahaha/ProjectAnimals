@@ -10,21 +10,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ScoresTableActivity extends AppCompatActivity {
-    private int winScore = 0;
-    private int loseScore = 0;
+    private String winScore;
+
     private TextView winView;
-    private TextView loseView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
         SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
         winView = findViewById(R.id.viewWin);
-        loseView = findViewById(R.id.viewLose);
-        winScore = myScore.getInt("winScore", 0);
-        loseScore = myScore.getInt("loseScore", 0);
-        winView.setText(String.valueOf(winScore));
-        loseView.setText(String.valueOf(loseScore));
+        winScore = myScore.getString("records", "");
+        winView.setText(winScore);
+
 
 
     }

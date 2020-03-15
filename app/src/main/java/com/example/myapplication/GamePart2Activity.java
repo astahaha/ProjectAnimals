@@ -160,18 +160,18 @@ public class GamePart2Activity extends AppCompatActivity {
     }
     private void scoreWinUp() {
         SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
-        int winScore = myScore.getInt("winScore", 0);
-        winScore++;
+        String records = myScore.getString("records", "");
+        records += (MainActivity.playerName + "_W,");
         SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
-        editor.putInt("winScore", winScore);
+        editor.putString("records", records);
         editor.commit();
     }
     private void scoreLoseUp() {
         SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
-        int loseScore = myScore.getInt("loseScore", 0);
-        loseScore++;
+        String records = myScore.getString("records", "");
+        records += (MainActivity.playerName + "_L,");
         SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
-        editor.putInt("loseScore", loseScore);
+        editor.putString("records", records);
         editor.commit();
     }
 
