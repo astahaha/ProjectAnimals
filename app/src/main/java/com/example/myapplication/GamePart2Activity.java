@@ -35,6 +35,8 @@ public class GamePart2Activity extends AppCompatActivity {
     private int countRight = 0;
     private int countAnswers = 0;
 
+    private long timeStart, timeEnd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,8 @@ public class GamePart2Activity extends AppCompatActivity {
         picc8.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[7], "drawable", getApplicationContext())));
         picc9.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[8], "drawable", getApplicationContext())));
         backMenu.setVisibility(View.INVISIBLE);
+
+        timeStart = System.currentTimeMillis();
     }
 
 
@@ -158,22 +162,24 @@ public class GamePart2Activity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    private void scoreWinUp() {
-        SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
+
+    private void saveScore() {
+        long scoreValue = 10000 / (timeEnd - timeStart) ;
+        SharedPreferences myScore = this.getSharedPreferences("TableScores", Context.MODE_PRIVATE);
         String records = myScore.getString("records", "");
-        records += (MainActivity.playerName + "_W,");
-        SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
+        records += (MainActivity.playerName + "," + scoreValue + ";");// "Ivan"
+        SharedPreferences.Editor editor = getSharedPreferences("TableScores", Context.MODE_PRIVATE).edit();
         editor.putString("records", records);
         editor.commit();
     }
-    private void scoreLoseUp() {
-        SharedPreferences myScore = this.getSharedPreferences("Scores", Context.MODE_PRIVATE);
+   /* private void scoreLoseUp() {
+        SharedPreferences myScore = this.getSharedPreferences("TableScores", Context.MODE_PRIVATE);
         String records = myScore.getString("records", "");
         records += (MainActivity.playerName + "_L,");
-        SharedPreferences.Editor editor = getSharedPreferences("Scores", Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences("TableScores", Context.MODE_PRIVATE).edit();
         editor.putString("records", records);
         editor.commit();
-    }
+    }*/
 
 
     private void checkChoise(int index) {
@@ -189,7 +195,7 @@ public class GamePart2Activity extends AppCompatActivity {
             if (rightAnimals[i] == mixAnimals[index]) {
                 if (MainActivity.mode.equals("Hard")) {
                     resultText.setText("Take an L");
-                    scoreLoseUp();
+                    //scoreLoseUp();
                     blockAllImages();
                     backMenu.setVisibility(View.VISIBLE);
                     if (index == 0)
@@ -217,7 +223,10 @@ public class GamePart2Activity extends AppCompatActivity {
                 if (countRight == 6) {
                     resultText.setText("WIN");
                     //обновление счета
-                   scoreWinUp();
+                    timeEnd = System.currentTimeMillis();
+                    saveScore();
+
+
                 }
                 if (index == 0)
                     picc1.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
@@ -266,18 +275,18 @@ public class GamePart2Activity extends AppCompatActivity {
                 else if (index == 8)
                     picc9.setImageDrawable(getResources().getDrawable(getResourceID("a" + mixAnimals[index] + "r", "drawable", getApplicationContext())));
                 countRight++;
-                if (countRight == 3){
+                if (countRight == 3) {
                     resultText.setText("WIN");
                     backMenu.setVisibility(View.VISIBLE);
                     blockAllImages();
-                 scoreWinUp();
+                    saveScore();
 
                 }
                 return;
 
             }
             resultText.setText("Take an L");
-            scoreLoseUp();
+            //scoreLoseUp();
             blockAllImages();
             backMenu.setVisibility(View.VISIBLE);
             if (index == 0)
@@ -303,6 +312,7 @@ public class GamePart2Activity extends AppCompatActivity {
 
 
     }
+
     private void blockAllImages() {
 
         picc1.setEnabled(false);
