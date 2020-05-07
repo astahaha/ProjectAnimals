@@ -43,15 +43,15 @@ public class ScoresTableActivity extends AppCompatActivity {
                 String[] items = s.split(","); // items = ["ivan", "5"], items[0]
                 String name = items[0];
                 Integer score = Integer.parseInt(items[1]);
-                //Добавляем в map только если нет такого пользователя либо score выше имеющегося
-                if (map.containsKey(name) == false || map.get(name) < score) {
+                //Добавляем в map только если нет такого пользователя либо score ниже имеющегося
+                if (map.containsKey(name) == false || map.get(name) > score) {
                     map.put(name, score);
                 }
             }
 
             // сортировка рекордов
             recordScores = map.entrySet().stream()
-                    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .sorted(Map.Entry.comparingByValue(Comparator.naturalOrder()))
                     .map(e -> new Record(e.getKey(), e.getValue()))
                     .collect(Collectors.toList());
 

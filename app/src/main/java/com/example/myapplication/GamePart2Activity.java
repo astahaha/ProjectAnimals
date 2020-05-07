@@ -164,12 +164,13 @@ public class GamePart2Activity extends AppCompatActivity {
     }
 
     private void saveScore() {
-        long scoreValue = 10000 / (timeEnd - timeStart) ;
+        long scoreValue = (timeEnd - timeStart) / 100;
         SharedPreferences myScore = this.getSharedPreferences("TableScores", Context.MODE_PRIVATE);
         String records = myScore.getString("records", "");
         records += (MainActivity.playerName + "," + scoreValue + ";");// "Ivan"
         SharedPreferences.Editor editor = getSharedPreferences("TableScores", Context.MODE_PRIVATE).edit();
         editor.putString("records", records);
+        // editor.putString("records", ""); // сброс рекордов
         editor.commit();
     }
    /* private void scoreLoseUp() {
