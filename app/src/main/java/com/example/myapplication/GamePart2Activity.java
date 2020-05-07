@@ -73,8 +73,13 @@ public class GamePart2Activity extends AppCompatActivity {
 
     private void formMixAnimals() {
         for (int i = 0; i < S; i++) {
-            mixAnimals[i] = EasyGmActivity.getElementByIndex(i);
-            rightAnimals[i] = EasyGmActivity.getElementByIndex(i);
+            if (MainActivity.mode.equals("Expert")) {
+                mixAnimals[i] = ExpertGmActivity.getElementByIndex(i);
+                rightAnimals[i] = ExpertGmActivity.getElementByIndex(i);
+            } else {
+                mixAnimals[i] = EasyGmActivity.getElementByIndex(i);
+                rightAnimals[i] = EasyGmActivity.getElementByIndex(i);
+            }
         }
         for (int i = S; i < 9; i++) {
             while (true) {
@@ -173,15 +178,6 @@ public class GamePart2Activity extends AppCompatActivity {
         // editor.putString("records", ""); // сброс рекордов
         editor.commit();
     }
-   /* private void scoreLoseUp() {
-        SharedPreferences myScore = this.getSharedPreferences("TableScores", Context.MODE_PRIVATE);
-        String records = myScore.getString("records", "");
-        records += (MainActivity.playerName + "_L,");
-        SharedPreferences.Editor editor = getSharedPreferences("TableScores", Context.MODE_PRIVATE).edit();
-        editor.putString("records", records);
-        editor.commit();
-    }*/
-
 
     private void checkChoise(int index) {
         countAnswers++;

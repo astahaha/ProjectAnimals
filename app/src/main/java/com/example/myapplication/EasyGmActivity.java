@@ -106,6 +106,7 @@ public class EasyGmActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
     public static int getElementByIndex(int index) {
         return randomAnimals[index];
     }

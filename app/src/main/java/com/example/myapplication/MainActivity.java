@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         mode = "Hard";
         playerName = playerNameView.getText().toString();
     }
+    public void expertGm(View v) {
+        Intent intent = new Intent(this, ExpertGmActivity.class);
+        startActivity(intent);
+        mode = "Expert";
+        playerName = playerNameView.getText().toString();
+    }
     public void goScoresTable(View v) {
         Intent intent = new Intent(this, ScoresTableActivity.class);
         startActivity(intent);
